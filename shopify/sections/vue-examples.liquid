@@ -9,23 +9,18 @@
     </p>
 
     <div class="shopify-theme-lab__examples">
-      <div vue-app="example"></div>
 
-      <renderless-example :message="'Hello!'" v-slot="{ message, store }">
-        <h3 class="text-lg">Renderless components</h3>
-        <p>Renderless components need to be inside the main "app". This app loads all renderless components.</p>
-        <p>Vue variables must be wrapped with raw/endraw.</p>
-        {% raw %}
-          <p>Count: {{ store.count }}</p>
-          <p>Message Prop: {{ message }}</p>
-        {% endraw %}
-        <button
-          class="border rounded px-2 py-1"
-          @click="store.increment"
-        >
-          Click!
-        </button>
-      </renderless-example>
+      <div vue-app="sfc-example"></div>
+
+      <div vue-app="renderless-example">
+        <renderless-test v-slot="{ store }">
+          <div class="border p-3">
+            {% raw %}
+            {{ store.count }}
+            {% endraw %}
+          </div>
+        </renderless-test>
+      </div>
     </div>
   </div>
 </div>

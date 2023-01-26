@@ -1,26 +1,24 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-// import App from './App.ts'
-
 import './css/index.css'
 
 const pinia = createPinia()
 const apps = import.meta.glob('./apps/*.vue')
 
-// Global app, will look for renderless components
-const mainApp = document.querySelector('#app')
-if (mainApp) {
-  const app = createApp({})
-  const components = Object.values(import.meta.glob('./components/renderless/*.vue', { eager: true })).map(i => i.default)
-  app.use(pinia)
-  components.forEach(component => app.component(component.name, component))
-  app.mount(mainApp)
+const createVueApp = (component) => {
+  if (String(component.name).startsWith('renderless')) {
+    const app = createApp({})
+    app.component(component.name, component)
+    return app
+  } else {
+    return createApp(component)
+  }
 }
 
 const mount = async (el: Element, appImport: any) => {
-  const module = await appImport()
-  const app = createApp(module.default)
+  const component = (await appImport()).default
+  const app = createVueApp(component)
   app.use(pinia)
   app.mount(el)
 }
