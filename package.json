@@ -8,12 +8,12 @@
     "node": ">=16"
   },
   "scripts": {
-    "dev": "run-p vite:dev shopify:serve",
-    "start": "run-p -sr shopify:serve vite:dev",
+    "dev": "run-p vite:dev shopify:dev",
     "deploy": "yarn vite:build && yarn shopify:push",
     "deploy:new": "run-s vite:build 'shopify:push --unpublished'",
+    "shopify": "shopify",
+    "shopify:dev": "cd shopify && shopify theme dev",
     "shopify:push": "cd shopify && shopify theme push",
-    "shopify:serve": "cd shopify && shopify theme serve",
     "shopify:pull": "cd shopify && shopify theme pull",
     "vite:dev": "vite dev",
     "vite:build": "vite build"
@@ -25,6 +25,8 @@
     "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@shopify/cli": "^3.38.0",
+    "@shopify/theme": "^3.38.0",
     "@types/node": "^18.11.18",
     "@vue/tsconfig": "^0.1.3",
     "autoprefixer": "^10.4.13",
