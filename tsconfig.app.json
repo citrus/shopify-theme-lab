@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vite.config.ts" ],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "lib": [ "es2020", "dom" ],
+    "allowJs": true,
+    "composite": true,
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "shared/*": ["../shared/src/*"]
+    }
+  }
+}
