@@ -3,6 +3,7 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vite.config.ts" ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    "types": [ "vite/client" ],
     "lib": [ "es2020", "dom" ],
     "allowJs": true,
     "composite": true,

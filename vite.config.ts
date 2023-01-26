@@ -13,7 +13,7 @@ const envDir = resolve(__dirname, './')
 export default ({ mode }: ConfigEnv) => {
   process.env = { ...process.env, ...loadEnv(mode, envDir) }
 
-  const hash = commit()
+  const hash = 'test3' ///commit()
 
   return defineConfig({
     base: process.env.VITE_BASE_URL,
@@ -35,7 +35,7 @@ export default ({ mode }: ConfigEnv) => {
       postcss: './postcss.config.js'
     },
     build: {
-      minify: true,
+      minify: false,
       target: 'es2020',
       emptyOutDir: false,
       outDir: './shopify/assets',

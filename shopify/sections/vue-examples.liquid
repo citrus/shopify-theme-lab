@@ -1,5 +1,5 @@
 <div class="container p-10">
-  <div class="">
+  <div>
     <h1 class="text-3xl text-purple-900">
       Shopify Theme Lab 🧪
     </h1>
@@ -10,6 +10,24 @@
 
     <div class="shopify-theme-lab__examples">
       <div vue-app="example"></div>
+
+      <div id="app">
+        <renderless-example :message="'Hello!'" v-slot="{ message, store }">
+          <h3 class="text-lg">Renderless components</h3>
+          <p>Renderless components need to be inside the main "app". This app loads all renderless components.</p>
+          <p>Vue variables must be wrapped with raw/endraw.</p>
+          {% raw %}
+            <p>Count: {{ store.count }}</p>
+            <p>Message Prop: {{ message }}</p>
+          {% endraw %}
+          <button
+            class="border rounded px-2 py-1"
+            @click="store.increment"
+          >
+            Click!
+          </button>
+        </renderless-example>
+      </div>
     </div>
   </div>
 </div>
