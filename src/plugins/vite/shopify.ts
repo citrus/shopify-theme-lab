@@ -40,13 +40,6 @@ const removeViteTemplates = async (dir: string, files: string[]) => {
   }
 }
 
-const copyPortalJS = async (dir: string, file: string | undefined) => {
-  if (!file) {
-    throw new Error('Could not copy portal javascript, portal.js not found.')
-  }
-  await cp(resolve(dir, file), resolve(dir, 'portal.js'))
-}
-
 export default (hash: string) => {
   return {
     name: 'shopify-normalize',
@@ -58,7 +51,6 @@ export default (hash: string) => {
       if (dir) {
         const files = Object.keys(bundle)
         await removeViteTemplates(dir, files.filter(i => i.endsWith('.html')))
-        await copyPortalJS(dir, files.find(i => PORTAL_JS_REGEX.test(i)))
       }
     }
   }

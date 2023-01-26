@@ -10,8 +10,9 @@
   "scripts": {
     "dev": "run-p vite:dev shopify:serve",
     "start": "run-p -sr shopify:serve vite:dev",
-    "deploy": "",
-    "deploy:new": ".. shopify theme push --unpublished",
+    "deploy": "run-s vite:build shopify:push",
+    "deploy:new": "run-s vite:build 'shopify:push --unpublished'",
+    "shopify:push": "cd shopify && shopify theme push",
     "shopify:serve": "cd shopify && shopify theme serve",
     "shopify:pull": "cd shopify && shopify theme pull",
     "lint": "",

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import './css/theme.css'
+import './css/index.css'
 
 const apps = import.meta.glob('./apps/*.vue')
 const pinia = createPinia()

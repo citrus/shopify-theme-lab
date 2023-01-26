@@ -19,7 +19,7 @@ export default ({ mode }: ConfigEnv) => {
     base: process.env.VITE_BASE_URL,
     plugins: [
       vue(),
-      combineCss(hash),
+      // combineCss(hash),
       shopify(hash)
     ],
     server: {
@@ -40,20 +40,6 @@ export default ({ mode }: ConfigEnv) => {
       emptyOutDir: false,
       outDir: './shopify/assets',
       rollupOptions: {
-        manualChunks (id) {
-        //   // Sample data for local dev
-          if (id.match(/test\/.*\.json/)) {
-            return 'data'
-          }
-          // SFC Styles
-          if (id.includes('type=style')) {
-            if (id.includes('/portal/')) {
-              return 'portal'
-            } else {
-              return 'vue-styles'
-            }
-          }
-        },
         input: {
           theme: resolve(__dirname, './index.html')
         },
