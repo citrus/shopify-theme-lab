@@ -4,7 +4,6 @@ import { defineConfig, loadEnv } from 'vite'
 import type { ConfigEnv } from 'vite'
 import {
   commit,
-  combineCss,
   shopify
 } from './src/plugins/vite'
 
@@ -13,13 +12,12 @@ const envDir = resolve(__dirname, './')
 export default ({ mode }: ConfigEnv) => {
   process.env = { ...process.env, ...loadEnv(mode, envDir) }
 
-  const hash = 'test3' ///commit()
+  const hash = commit()
 
   return defineConfig({
     base: process.env.VITE_BASE_URL,
     plugins: [
       vue(),
-      // combineCss(hash),
       shopify(hash)
     ],
     server: {
