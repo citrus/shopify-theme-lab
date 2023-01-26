@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
     {% if settings.favicon %}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
@@ -19,7 +17,13 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {{ 'bundle.css' | asset_url | stylesheet_tag }}
+    <!-- Vite Assets -->
+    {% if settings.dev %}
+      <script type="module" src="http://localhost:3000/src/theme.ts"></script>
+    {% else %}
+      <script type="module" crossorigin src="{{ 'theme-[version].js' | replace: '[version]', settings.hash | asset_url }}"></script>
+      <link rel="stylesheet" href="{{ 'theme-[version].css' | replace: '[version]', settings.hash | asset_url }}">
+    {% endif %}
 
     <!-- header hook for Shopify plugins -->
     {{ content_for_header }}
@@ -35,8 +39,5 @@
 
       {% section 'footer' %}
     </div>
-
-    <!-- webpack bundle -->
-    <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

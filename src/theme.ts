@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './css/main.css'
+import './css/theme.css'
 
 const apps = import.meta.glob('./apps/*.vue')
 

@@ -1,4 +1,9 @@
-<div class="{{ class | default: '' }}" style="{{ style | default: '' }}">
+<div class="flex space-x-5">
+  <div>
+    <a href="'/">
+      Home
+    </a>
+  </div>
   {% for link in linklists.main-menu.links %}
     <div>
       <a href="{{ link.url }}">
