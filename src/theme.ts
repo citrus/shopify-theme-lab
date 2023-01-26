@@ -1,11 +1,17 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
 import './css/theme.css'
 
 const apps = import.meta.glob('./apps/*.vue')
+const pinia = createPinia()
 
 const mount = async (el: Element, appImport: any) => {
+
   const module = await appImport()
-  createApp(module.default).mount(el)
+  const app = createApp(module.default)
+  app.use(pinia)
+  app.mount(el)
 }
 
 const vueElements = document.querySelectorAll('[vue-app]')
