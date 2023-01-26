@@ -17,13 +17,9 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    <!-- Vite Assets -->
-    {% if settings.dev %}
-      <script type="module" src="http://localhost:3000/src/theme.ts"></script>
-    {% else %}
-      <script type="module" crossorigin src="{{ 'theme-[version].js' | replace: '[version]', settings.hash | asset_url }}"></script>
+    {% unless settings.dev %}
       <link rel="stylesheet" href="{{ 'index-[version].css' | replace: '[version]', settings.hash | asset_url }}">
-    {% endif %}
+    {% endunless %}
 
     <!-- header hook for Shopify plugins -->
     {{ content_for_header }}
@@ -39,5 +35,13 @@
 
       {% section 'footer' %}
     </div>
+
+
+    <!-- Vite Assets -->
+    {% if settings.dev %}
+      <script type="module" src="http://localhost:3000/src/theme.ts"></script>
+    {% else %}
+      <script type="module" crossorigin src="{{ 'theme-[version].js' | replace: '[version]', settings.hash | asset_url }}"></script>
+    {% endif %}
   </body>
 </html>
