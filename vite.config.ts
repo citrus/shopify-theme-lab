@@ -12,7 +12,7 @@ const envDir = resolve(__dirname, './')
 export default ({ mode }: ConfigEnv) => {
   process.env = { ...process.env, ...loadEnv(mode, envDir) }
 
-  const hash = commit()
+  const hash = '123123123' // commit()
 
   return defineConfig({
     base: process.env.VITE_BASE_URL,

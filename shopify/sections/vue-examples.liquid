@@ -13,11 +13,14 @@
       <div vue-app="sfc-example"></div>
 
       <div vue-app="renderless-example">
-        <renderless-test v-slot="{ store }">
+        <renderless-test v-slot="{ count, increment }">
           <div class="border p-3">
             {% raw %}
-            {{ store.count }}
+            {{ count }}
             {% endraw %}
+            <button @click="increment">
+              increment
+            </button>
           </div>
         </renderless-test>
       </div>

@@ -1,11 +1,17 @@
 <script>
-import { useAppStore } from '@/stores/app'
+import { ref } from 'vue'
+// import { useAppStore } from '@/stores/app'
 export default {
   name: 'renderless-test',
   setup (props, { slots }) {
-    const store = useAppStore()
+    // const store = useAppStore()
+
+    const count = ref(0)
+    const increment = () => (count.value++)
+
     return () => slots.default({
-      store
+      increment,
+      count
     })
   }
 }
