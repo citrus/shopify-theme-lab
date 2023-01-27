@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia, setActivePinia } from 'pinia'
 
 import './css/index.css'
 
-const pinia = createPinia()
+window.pinia = createPinia()
 const apps = import.meta.glob('./apps/*.vue')
 
 const createVueApp = (component) => {
@@ -19,7 +19,7 @@ const createVueApp = (component) => {
 const mount = async (el: Element, appImport: any) => {
   const component = (await appImport()).default
   const app = createVueApp(component)
-  app.use(pinia)
+  app.use(window.pinia)
   app.mount(el)
 }
 

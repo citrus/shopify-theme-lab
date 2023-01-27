@@ -6,12 +6,23 @@
   <title>Shopify</title>
 </head>
 <body>
-  <div vue-app="example"></div>
+  <div vue-app="sfc-example"></div>
 
-  <div vue-app="example2">
-    <renderless-test v-slot="{ store }">
+  <div vue-app="renderless-example">
+    <renderless-test v-slot="{ store, localCount, localIncrement }">
       <div class="border p-3">
-        {{ store.count }}
+        <p>Store: {{ store.count }}</p>
+        <p>Local: {{ localCount }}</p>
+        <p>
+          <button @click="localIncrement">
+            increment local
+          </button>
+        </p>
+        <p>
+          <button @click="store.increment">
+            increment store
+          </button>
+        </p>
       </div>
     </renderless-test>
   </div>

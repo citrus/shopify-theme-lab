@@ -18,7 +18,7 @@
     {% endif %}
 
     {% unless settings.dev %}
-      <link rel="stylesheet" href="{{ 'index-[version].css' | replace: '[version]', settings.hash | asset_url }}">
+      <link rel="stylesheet" href="{{ 'vite-index-[version].css' | replace: '[version]', settings.hash | asset_url }}">
     {% endunless %}
 
     <!-- header hook for Shopify plugins -->
@@ -41,7 +41,7 @@
     {% if settings.dev %}
       <script type="module" src="http://localhost:3000/src/theme.ts"></script>
     {% else %}
-      <script type="module" crossorigin src="{{ 'theme-[version].js' | replace: '[version]', settings.hash | asset_url }}"></script>
+      <script type="module" crossorigin src="{{ 'vite-theme-[version].js' | replace: '[version]', settings.hash | asset_url }}"></script>
     {% endif %}
   </body>
 </html>

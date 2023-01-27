@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import type { ConfigEnv } from 'vite'
 import {
-  commit,
   shopify
 } from './src/plugins/vite'
 
@@ -12,13 +11,13 @@ const envDir = resolve(__dirname, './')
 export default ({ mode }: ConfigEnv) => {
   process.env = { ...process.env, ...loadEnv(mode, envDir) }
 
-  const hash = '123123123' // commit()
+  const digest = new Date().getTime().toString()
 
   return defineConfig({
     base: process.env.VITE_BASE_URL,
     plugins: [
       vue(),
-      shopify(hash)
+      shopify(digest)
     ],
     server: {
       port: 3000
@@ -33,8 +32,8 @@ export default ({ mode }: ConfigEnv) => {
       postcss: './postcss.config.js'
     },
     build: {
-      minify: false,
       target: 'es2020',
+      minify: false,
       emptyOutDir: false,
       outDir: './shopify/assets',
       rollupOptions: {
@@ -43,9 +42,9 @@ export default ({ mode }: ConfigEnv) => {
         },
         output: {
           validate: true,
-          entryFileNames: `[name]-${hash}.js`,
-          chunkFileNames: `[name]-${hash}.js`,
-          assetFileNames: `[name]-${hash}.[ext]`
+          entryFileNames: `vite-[name]-${digest}.js`,
+          chunkFileNames: `vite-[name]-${digest}.js`,
+          assetFileNames: `vite-[name]-${digest}.[ext]`
         }
       }
     }

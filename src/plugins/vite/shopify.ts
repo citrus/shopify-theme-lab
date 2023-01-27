@@ -6,11 +6,9 @@ interface AssetInfo {
   fileName: string
 }
 
-const PORTAL_JS_REGEX = /portal-[a-f0-9]+\.js/
-
 const removeAssets = async (dir: string) => {
   const files = await readdir(dir, { withFileTypes: true })
-  const filesToDelete = files.filter(i => i.isFile() && !(i.name.includes('static.') || i.name === 'favicon.ico'))
+  const filesToDelete = files.filter(i => i.isFile() && !i.name.startsWith('-vite'))
   for (const file of filesToDelete) {
     await unlink(resolve(dir, file.name))
   }
